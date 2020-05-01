@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>CARGLIST</title>
+        <meta name="description" content="Car searching platform">
+        <meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no">
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.6.3/css/all.css">
+        <link href="css/main.css" rel="stylesheet" media="screen" >
+             <script src="/__/firebase/7.14.1/firebase-app.js"></script>
+    <script src="/__/firebase/7.14.2/firebase-analytics.js"></script>
+    <script src="/__/firebase/7.14.1/firebase-auth.js"></script>
+    <script src="/__/firebase/7.14.1/firebase-firestore.js"></script>
+
+
+    </head>
+
+    <body>
+         <script src="/__/firebase/init.js"></script>
+
+         <header role="banner">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+              <a class="navbar-brand" href="index.html">
+                <img src="images/icon/cargslist_logo.png" alt="cargslist icon" width="70" height="70" class="d-inline-block align-top">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="buy.html">Buy</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="about_us.html">About Us</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="contact_us.html">Contact Us</a>
+                  </li>
+                    
+                </ul>
+                 <div > 
+                  <div class="dropdown">
+                      
+                    <img src="images/icon/user.png" alt="current user" width="50%" height="50%" class="btn btn-light image-btn" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="myUserFunction()">
+                    
+                      
+                      <div class="dropdown-menu dropdown-menu-right" id="userLogin">
+                        <form class='px-4 py-3'>
+                            <div class='form-group'>
+                                <label for='userEmail'>Email address</label>
+                                <input type='email' class='form-control' id='userEmail' placeholder='email@example.com'>
+                                </div>
+                            <div class='form-group'>
+                                <label for='userPassword'>Password</label>
+                                <input type='password' class='form-control' id='userPassword' placeholder='Password'>
+                            </div>
+                            <div class='form-check'>
+                                <input type='checkbox' class='form-check-input' id='dropdownCheck'>
+                                <label class='form-check-label' for='dropdownCheck'>Remember me</label>
+                                <button type="button" class='btn btn-primary' id='btnLogin' onclick="signInFunction(); return false;">Sign in</button>
+                            </div>
+                        </form>
+                          <div class='dropdown-divider'></div>
+                          <a class='dropdown-item' href="userLogin.html">New around here? Sign up</a>
+                          <a class='dropdown-item' href='#'>Forgot password?</a>
+                            
+                      </div>
+                      
+                  </div>
+                  </div>
+                  
+<!--
+                <form class="form-inline my-2 my-lg-0">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search A Car</button>
+                </form>
+-->            </div>
+            </nav>
+        </header>
+        <main>
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img class="d-block w-100" src="images/userRegistration/registration.png" alt="First slide">
+                    <div class="carousel-caption d-none d-md-block">
+                     <h1 class="display-4 font-weight-bold header-shade">It is that easy to Buy a Car</h1>
+                       
+
+                    </div>
+                </div>
+                </div>
+            </div>
+            
+            <!--User registration-->
+            
+        
+
+            <div class="container pt-5 pb-5">
+                
+                <form>
+                        <div class="form-group">
+                <label for="userName">User Name</label>
+                <input type="text" class="form-control" id="userName" placeholder="Username can contain any letters or numbers, without spaces">
+
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">Email</label>
+                  <input type="email" class="form-control" id="inputEmail4" placeholder="Email" disabled>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputAddress">Address</label>
+                <input type="text" class="form-control" id="inputAddress" placeholder="">
+              </div>
+              <div class="form-group">
+                <label for="inputAddress2">Address 2</label>
+                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputCity">City</label>
+                  <input type="text" class="form-control" id="inputCity">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="inputState">State</label>
+                  <select id="inputState" class="form-control">
+                    <option selected>Choose...</option>
+                    <option id="Alabama">Alabama</option>
+                      <option id="Alaska">Alaska</option>
+                      <option id="Arizona">Arizona</option>
+                      <option id="Arkansas">Arkansas</option>
+                      <option id="California">California</option>
+                      <option id="Colorado">Colorado</option>
+                      <option id="Connecticut">Connecticut</option>
+                      <option id="Florida">Florida</option>
+                      <option id="Georgia">Georgia</option>
+                      <option id="Hawaii">Hawaii</option>
+                      <option id="Idaho">Idaho</option>
+                      <option id="Illinois">Illinois</option>
+                      <option id="Indiana">Indiana</option>
+
+                      <option id="Iowa">Iowa</option>
+                      <option id="Kansas">Kansas</option>
+                      <option id="Kentucky">Kentucky</option>
+                      <option id="Louisiana">Louisiana</option>
+                      <option id="Maine">Maine</option>
+                      <option id="Maryland">Maryland</option>
+                      <option id="Massachusetts">Massachusetts</option>
+                      <option id="Michigan">Michigan</option>
+                      <option id="Minnesota">Minnesota</option>
+                      <option id="Minnesota">Mississippi</option>
+                      <option id="Minnesota">Missouri</option>
+                      <option id="Montana">Montana</option>
+                      <option id="Nebraska">Nebraska</option>
+
+                        <option id="Nevada">Nevada</option>
+                      <option id="NewHampshire">New Hampshire</option>
+                      <option id="NewJersey">New Jersey</option>
+                      <option id="NewMexico">New Mexico</option>
+                      <option id="NewYork">New York</option>
+                      <option id="NorthCarolina">North Carolina</option>
+                      <option id="NorthDakota">North Dakota</option>
+                      <option id="Ohio">Ohio</option>
+                      <option id="Oklahoma">Oklahoma</option>
+                      <option id="Oregon">Oregon</option>
+                      <option id="Pennsylvania">Pennsylvania</option>
+                      <option id="RhodeIsland">Rhode Island</option>
+                      <option id="South Carolina">South Carolina</option>
+
+                        <option id="South Dakota">South Dakota</option>
+                      <option id="Tennessee">Tennessee</option>
+                      <option id="Texas">Texas</option>
+                      <option id="Utah">Utah</option>
+                      <option id="Vermont">Vermont</option>
+                      <option id="Virginia">Virginia</option>
+                      <option id="Washington">Washington</option>
+                      <option id="West Virginia">West Virginia</option>
+                      <option id="Wisconsin">Wisconsin</option>
+                      <option id="Wyoming">Wyoming</option>
+
+
+
+                  </select>
+                </div>
+                <div class="form-group col-md-2">
+                  <label for="inputZip">Zip</label>
+                  <input type="text" class="form-control" id="inputZip">
+                </div>
+              </div>
+              <div class="form-group">
+              </div>
+              <button type="button" class="btn btn-primary" id="updateUserProile" onclick="editUserProfile(); return false;">Update</button>
+            </form>
+                        </div>
+            
+            
+            
+            
+        </main>
+        <footer class="ftop text-center">
+                <div class="container text-dark">
+                    <div class="row">
+                    <div class="col-md py-3 py-md-5">
+                        <h3>US Headquarters</h3>
+                        <p class="small d-none d-md-block">&nbsp;</p>
+                        <p>
+                        1250 Bellflower Blvd<br>
+                        Long Beach, CA 90840<br>
+                        </p>
+                    </div>
+
+                    <div class="col-md-5 py-3 py-md-5 border-left border-right">
+                        <h3>Join Our News Letter</h3>
+                        <p class="small d-none d-md-block">&nbsp;</p>
+                        <form id="signupform" name="signupform" action="" method="post" class="mt-1">
+                            <input type="email" class="form-control" name="email" placeholder="Email Here">
+                            <button type="submit" name="button" class="btn btn-secondary mt-2">Subscribe</button>
+                        </form>
+                    </div>
+                    <div class="col-md py-3 py-md-5 ">
+                        <h3>Connect with US</h3>
+                        <p class="small d-none d-md-block">&nbsp;</p>
+                        <div class="social">
+                        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <script src="js/global.js"></script> 
+            <script src="js/editProfile.js"></script>
+            <script src="js/updateProfile.js"></script>
+            <!--Boostrap js-->
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+            <!--end of boostrap js-->
+        </footer>
+
+
+
+    </body>
+</html>

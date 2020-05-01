@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>CARGLIST</title>
+        <meta name="description" content="Car searching platform">
+        <meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.6.3/css/all.css">
+        <link href="css/main.css" rel="stylesheet" media="screen" >
+             <script src="/__/firebase/7.14.1/firebase-app.js"></script>
+    <script src="/__/firebase/7.14.2/firebase-analytics.js"></script>
+    <script src="/__/firebase/7.14.1/firebase-auth.js"></script>
+    <script src="/__/firebase/7.14.1/firebase-firestore.js"></script>
+
+    </head>
+
+    <body>
+          <script src="/__/firebase/init.js"></script>
+         <header role="banner">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+              <a class="navbar-brand" href="index.html">
+                <img src="images/icon/cargslist_logo.png" alt="cargslist icon" width="70" height="70" class="d-inline-block align-top">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="buy.html">Buy</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="about_us.html">About Us</a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="contact_us.html">Contact Us </a>
+                  </li>
+                    
+                </ul>
+                 <div > 
+                  <div class="dropdown">
+                      
+                    <img src="images/icon/user.png" alt="current user" width="50%" height="50%" class="btn btn-light image-btn" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="myUserFunction()">
+                    
+                      
+                      <div class="dropdown-menu dropdown-menu-right" id="userLogin">
+                        <form class='px-4 py-3'>
+                            <div class='form-group'>
+                                <label for='userEmail'>Email address</label>
+                                <input type='email' class='form-control' id='userEmail' placeholder='email@example.com'>
+                                </div>
+                            <div class='form-group'>
+                                <label for='userPassword'>Password</label>
+                                <input type='password' class='form-control' id='userPassword' placeholder='Password'>
+                            </div>
+                            <div class='form-check'>
+                                <input type='checkbox' class='form-check-input' id='dropdownCheck'>
+                                <label class='form-check-label' for='dropdownCheck'>Remember me</label>
+                                <button type="button" class='btn btn-primary' id='btnLogin' onclick="signInFunction(); return false;">Sign in</button>
+                            </div>
+                        </form>
+                          <div class='dropdown-divider'></div>
+                          <a class='dropdown-item' href='userLogin.html'>New around here? Sign up</a>
+                          <a class='dropdown-item' href='#'>Forgot password?</a>
+                            
+                      </div>
+                      
+                  </div>
+                  </div>
+                  
+<!--
+                <form class="form-inline my-2 my-lg-0">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search A Car</button>
+                </form>
+-->            </div>
+            </nav>
+        </header>
+        <main>
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img class="d-block w-100" src="images/userRegistration/registration.png" alt="First slide">
+                    <div class="carousel-caption d-none d-md-block">
+                     <h1 class="display-4 font-weight-bold header-shade">It is that easy to Buy a Car</h1>
+                       
+
+                    </div>
+                </div>
+                </div>
+            </div>
+            
+            <div class="container mt-5">
+                <div class="d-flex justify-content-between">
+                     <h2>User Account Details</h2>
+                    <Button onclick="location.href='editProfile.html'">Edit Profile</Button>
+                </div>
+               
+                <div class="container bg-light">
+                    <div class="row" id="userName">
+                        <label class="col-sm-2">User Name:</label>
+                    </div>
+                    <div class="row" id="email">
+                         <label class="col-sm-2">email:</label>
+                    </div>
+                    <div class="row" id="address">
+                         <label class="col-sm-2">Address:</label>
+                    </div>
+                    <div class="row" id="address2">
+                        <label class="col-sm-2">Address 2:</label>
+                    </div>
+                    <div class="row" id="city">
+                        <label class="col-sm-2">City:</label>
+                    </div>
+                    <div class="row" id="state">
+                        <label class="col-sm-2">State:</label>
+                    </div>
+                    <div class="row" id="zipCode">
+                        <label class="col-sm-2">Zip:</label>
+                    </div>
+                </div> 
+            </div>
+            
+            <div class="container mt-5 mb-5">
+                <div class="d-flex justify-content-between">
+                     <h2 >Sell Your Car</h2>
+                    <Button onclick="location.href='addACarToSell.html'">Add A Car To Sale</Button>
+                </div>
+               
+                <!--when the user add a car to sell should be added to here-->
+                
+                <section class="container mt-3 mb-3 mx-auto bg-light"  >
+                            <div class="row" id="carsToSell">
+                            <!--<div class="card" style="width: 18rem;" id="cars-list">
+                              <img class="card-img-top" src="..." alt="Card image cap">
+                              <div class="card-body">
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                              </div>
+                            </div>-->
+                            </div>
+                        </section>
+                
+            </div>
+            
+            <div class="container mt-5 mb-5">
+                <div class="d-flex justify-content-between">
+                 <h2 >Cars Purchsed</h2>
+                </div>
+               
+                <!--when the user add a car to sell should be added to here-->
+                <div class="container bg-light" id="carsToSell">
+                    
+                </div>
+                
+            </div>
+            
+            <div class="container mt-5 mb-5">
+                <div class="d-flex justify-content-between">
+                     <h2 >Cars Sold</h2>
+                   
+                </div>
+               
+                <!--when the user add a car to sell should be added to here-->
+                <div class="container bg-light" id="carsToSell">
+                    
+                </div>
+                
+            </div>
+            
+            
+            
+            
+        </main>
+        <footer class="ftop text-center">
+                <div class="container text-dark">
+                    <div class="row">
+                    <div class="col-md py-3 py-md-5">
+                        <h3>US Headquarters</h3>
+                        <p class="small d-none d-md-block">&nbsp;</p>
+                        <p>
+                        1250 Bellflower Blvd<br>
+                        Long Beach, CA 90840<br>
+                        </p>
+                    </div>
+
+                    <div class="col-md-5 py-3 py-md-5 border-left border-right">
+                        <h3>Join Our News Letter</h3>
+                        <p class="small d-none d-md-block">&nbsp;</p>
+                        <form id="signupform" name="signupform" action="" method="post" class="mt-1">
+                            <input type="email" class="form-control" name="email" placeholder="Email Here">
+                            <button type="submit" name="button" class="btn btn-secondary mt-2">Subscribe</button>
+                        </form>
+                    </div>
+                    <div class="col-md py-3 py-md-5 ">
+                        <h3>Connect with US</h3>
+                        <p class="small d-none d-md-block">&nbsp;</p>
+                        <div class="social">
+                        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <script src="js/global.js"></script> 
+            <script src="js/user.js"></script>
+            <script src="js/addCarToDB.js"></script>
+            <!--Boostrap js-->
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+            <!--end of boostrap js-->
+        </footer>
+
+
+
+    </body>
+</html>
